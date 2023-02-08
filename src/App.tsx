@@ -1,31 +1,9 @@
 import React from "react";
 import "./App.css";
-
-interface IShow {
-  id: string;
-  name: string;
-  summary: string;
-  image: {
-    original: string;
-    medium: string;
-  };
-  premiered: string;
-  _embedded: {
-    cast: Array<ICastMember>;
-  };
-}
-
-interface ICastMember {
-  person: {
-    name: string;
-    image: {
-      medium: string;
-    };
-  };
-  character: {
-    name: string;
-  };
-}
+import { Show } from './components/Show/Show';
+import { Loading } from './components/Loading/Loading';
+import { ShowList } from './components/ShowList/ShowList';
+import { IShow } from "./types";
 
 export default function App(): JSX.Element {
   const [query, setQuery] = React.useState<string>("");
@@ -78,6 +56,8 @@ export default function App(): JSX.Element {
         setError("Could not load show details.");
       });
   }
+  let resultsNumber = 0;
+  if (hasSearched && query) resultsNumber = shows.length;
 
   return (
     <div className="app">
@@ -97,104 +77,20 @@ export default function App(): JSX.Element {
       <div>
         <Loading isLoading={isLoading}>
           {show ? (
-            <Show show={show} onCancel={() => setShow(null)} />
+            <Show
+                show={show}
+                onCancel={() => setShow(null)}
+            />
           ) : (
-            <>
-              {hasSearched && query && (
-                <div className="results-meta">
-                  {shows.length} results for "{query}"
-                </div>
-              )}
-              <ShowList shows={shows} onSelectShow={onSelectShow} />
-            </>
+              <ShowList
+                  resultsNumber={resultsNumber}
+                  query={query}
+                  shows={shows}
+                  onSelectShow={onSelectShow}
+              />
           )}
         </Loading>
       </div>
-    </div>
-  );
-}
-
-function Loading({
-  isLoading,
-  children,
-}: {
-  isLoading: boolean;
-  children: React.ReactChild;
-}): JSX.Element {
-  return isLoading ? <div>Loading...</div> : <>{children}</>;
-}
-
-function ShowList({
-  shows,
-  onSelectShow,
-}: {
-  shows: Array<IShow>;
-  onSelectShow: (show: IShow) => void;
-}): JSX.Element {
-  return (
-    <div className="show-list">
-      {shows.map((show) => {
-        return (
-          <div
-            key={show.id}
-            className="show-preview"
-            onClick={() => onSelectShow(show)}
-          >
-            {show.image && <img src={show.image.medium} alt="" />}
-            <span>{show.name}</span>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
-function Show({
-  show,
-  onCancel,
-}: {
-  show: IShow;
-  onCancel: () => void;
-}): JSX.Element {
-  const cast = show._embedded.cast;
-
-  return (
-    <>
-      <div className="show-back">
-        <button onClick={onCancel}>Back to list</button>
-      </div>
-      <div className="show">
-        <div className="show-image">
-          {show.image && <img src={show.image.original} alt="" />}
-        </div>
-        <div className="show-details">
-          <h2>{show.name}</h2>
-          <div className="show-meta">
-            {show.premiered ? "Premiered " + show.premiered : "Yet to premiere"}
-          </div>
-          <div dangerouslySetInnerHTML={{ __html: show.summary }} />
-          <h3>Cast</h3>
-          <ul className="cast">
-            {cast.map((member: ICastMember) => (
-              <li key={member.character.name}>
-                <CastMember member={member} />
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </>
-  );
-}
-
-function CastMember({ member }: { member: ICastMember }): JSX.Element {
-  return (
-    <div className="cast-member">
-      <div className="cast-member-image">
-        {member.person.image && <img src={member.person.image.medium} alt="" />}
-      </div>
-      <strong>{member.person.name}</strong>&nbsp;as&nbsp;
-      {member.character.name}
     </div>
   );
 }
