@@ -1,19 +1,20 @@
-import React from "react";
-import { CastMember } from '../CastMember/CastMember';
-
-import { IShow } from "../../types";
+import React from 'react';
+import { CastCard } from './CastCard/CastCard';
+import './styles.css';
+import { IShow } from '../../types';
+import _ from 'lodash';
 
 interface IShowProps {
     show: IShow;
     onCancel: () => void;
 }
 
-export const Show: React.FC<IShowProps> = ({ show, onCancel }) => {
+export const Single: React.FC<IShowProps> = ({ show, onCancel }) => {
     console.log('Show', show);
-    const cast = show._embedded.cast;
+    const cast = _.get(show, '_embedded.cast');
 
     return (
-        <>
+        <div className="singular">
             <div className="show-back">
                 <button onClick={onCancel}>Back to list</button>
             </div>
@@ -29,14 +30,14 @@ export const Show: React.FC<IShowProps> = ({ show, onCancel }) => {
                     <div dangerouslySetInnerHTML={{ __html: show.summary }} />
                     <h3>Cast</h3>
                     <ul className="cast">
-                        {cast.map(({ character, person }, index) => (
+                        {_.map(cast, ({ character, person }, index) => (
                             <li key={index}>
-                                <CastMember character={character} person={person} />
+                                <CastCard character={character} person={person} />
                             </li>
                         ))}
                     </ul>
                 </div>
             </div>
-        </>
+        </div>
     );
 };

@@ -1,0 +1,37 @@
+.plural {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+}
+
+.sorters, .description {
+    width: 100%;
+    padding: 16px 0;
+    font-size: 18px;
+    line-height: 20px;
+    font-style: normal;
+}
+
+.sorters {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+}
+
+.description {
+
+}
+
+.shows {
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px 0;
+    justify-content: space-between;
+}
+
+.shows:last-child {
+    /*display: flex;*/
+    /*align-self: flex-start !important;*/
+}

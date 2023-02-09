@@ -1,6 +1,8 @@
-import React from "react";
+import React from 'react';
 
-interface ICastMemberProps {
+import './styles.css';
+
+interface ICastCardProps {
     person: {
         name: string;
         image: {
@@ -12,9 +14,9 @@ interface ICastMemberProps {
     };
 }
 
-export const CastMember: React.FC<ICastMemberProps> = ({ character, person }) => (
-    <div className="cast-member">
-        <div className="cast-member-image">
+export const CastCard: React.FC<ICastCardProps> = ({ character, person }) => (
+    <div className='cast-member'>
+        <div className='cast-member-image'>
             {person.image && <img src={person.image.medium} alt="" />}
         </div>
         <strong>{person.name}</strong>&nbsp;as&nbsp;

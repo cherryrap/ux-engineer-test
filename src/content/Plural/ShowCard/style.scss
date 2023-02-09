@@ -1,0 +1,72 @@
+@import "src/assets/style/constants";
+
+.ShowCard {
+  background-color: $black80Color;
+  background-size: cover;
+  border-radius: 8px;
+  color: $whiteColor;
+  padding: 16px;
+  position: relative;
+  height: 240px;
+  width: 160px;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: $boxShadow;
+  }
+
+  //@mixin slideAnimation {
+  //  animation-timing-function: ease;
+  //  animation-duration: 0.4s;
+  //}
+
+  &__wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100%;
+  }
+
+  &__bg {
+    border-radius: 8px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__bg-image {
+    border-radius: 8px;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__rating,  &__year {
+    display: flex;
+    background-color: rgb($black100Color, 0.8);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  &__rating {
+    .Icon {
+      margin-right: 4px;
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+  }
+
+  @media screen and (max-width: 767px) {
+
+  }
+}

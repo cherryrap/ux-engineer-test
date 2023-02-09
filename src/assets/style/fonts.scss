@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'PT Root UI';
+  src: local('PT Root UI Medium'), local('PTRootUI-Medium'), url('../fonts/PTRootUI/medium.woff2') format('woff2'), url('../fonts/PTRootUI/medium.woff') format('woff'), url('../fonts/PTRootUI/medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PT Root UI';
+  src: local('PT Root UI Light'), local('PTRootUI-Light'), url('../fonts/PTRootUI/light.woff2') format('woff2'), url('../fonts/PTRootUI/light.woff') format('woff'), url('../fonts/PTRootUI/light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PT Root UI';
+  src: local('PT Root UI'), local('PTRootUI-Regular'), url('../fonts/PTRootUI/regular.woff2') format('woff2'), url('../fonts/PTRootUI/regular.woff') format('woff'), url('../fonts/PTRootUI/regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PT Root UI';
+  src: local('PT Root UI Bold'), local('PTRootUI-Bold'), url('../fonts/PTRootUI/bold.woff2') format('woff2'), url('../fonts/PTRootUI/bold.woff') format('woff'), url('../fonts/PTRootUI/bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

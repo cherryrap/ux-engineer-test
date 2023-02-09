@@ -1,11 +1,10 @@
 import React from "react";
 
-interface ILoadingProps {
+interface ILoaderProps {
     isLoading: boolean;
     children: React.ReactChild;
 }
 
-export const Loading: React.FC<ILoadingProps> = ({ isLoading, children }) => {
-    console.log('Loading', isLoading);
+export const Loader: React.FC<ILoaderProps> = ({ isLoading, children }) => {
     return isLoading ? <div>Loading...</div> : <>{children}</>;
 };

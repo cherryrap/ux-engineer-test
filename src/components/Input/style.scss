@@ -1,0 +1,247 @@
+@import "src/assets/style/constants";
+
+$paddingH: 16px;
+$paddingV: 12px;
+$borderWidth: 1px;
+$borderRadius: 8px;
+$focusedLabelLineHeight: 18px;
+$controlHeight: 32px;
+$clearIconWidth: 32px;
+
+.Input {
+  display: flex;
+  flex-direction: column;
+  height: $controlHeight;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: $whiteColor;
+  border-radius: $borderRadius;
+  min-width: 155px;
+  padding: $paddingV $paddingH;
+
+  &_invalid {
+    border-color: $redColor !important;
+    margin-bottom: 18px;
+  }
+
+  &_focused {
+    input {
+      outline: none;
+    }
+    border-color: $redColor !important;
+  }
+
+  &__control {
+    width: 100%;
+    height: 100%;
+    border: none;
+    caret-color: $black100Color;
+    padding: 0;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: -0.1px;
+    color: $black100Color;
+    position: relative;
+    z-index: 10;
+  }
+
+  &__label {
+    align-items: center;
+    display: flex;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.33;
+    color: $black100Color;
+    margin: 0 0 8px;
+    width: 100%;
+    z-index: 10;
+
+    &-info {
+      background-size: 16px;
+      height: 32px;
+      margin-left: 8px;
+      min-height: 32px;
+      min-width: 32px;
+      width: 32px;
+
+      >.Input__label-info {
+        left: 0;
+        margin-left: 0;
+        position: absolute;
+        top: 0;
+      }
+    }
+
+    &_asPlaceholder {
+      @include placeholder;
+      display: block;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: $paddingH;
+      margin: 0;
+      transition: all .2s ease-out;
+      width: calc(100% - #{$paddingH} * 2);
+      overflow: hidden;
+      will-change: top;
+
+      &.Input__label {
+        &_focused {
+          top: calc(#{$paddingV} + #{$focusedLabelLineHeight} / 2);
+          font-size: 14px;
+          line-height: $focusedLabelLineHeight;
+          letter-spacing: -0.1px;
+          color: $black100Color;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+
+          +.Input__control {
+            top: 8px;
+
+            &[type="select"] {
+              top: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &_type {
+    &_text, &_number {
+      display: flex;
+    }
+
+    &_select {
+      cursor: pointer !important;
+
+      * {
+        cursor: pointer !important;
+        font-weight: 400;
+      }
+
+      .Input {
+        &__control {
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+
+  &_textarea {
+    height: auto !important;
+
+    .Input {
+      &__control {
+        margin-bottom: 16px;
+        min-height: 60px; // for iOS 10
+      }
+
+      &__label {
+        &_focused {
+          +.Input__control {
+            top: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  &__select {
+    position: absolute;
+    width: calc(100% + #{$borderWidth} * 2);
+    max-height: 320px;
+    height: auto;
+    top: calc(#{$controlHeight} + 2px);
+    border: $border;
+    box-shadow: $boxShadow;
+    border-radius: $borderRadius;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: $whiteColor;
+    z-index: 20;
+    overflow: auto;
+    overscroll-behavior: none;
+
+    &-item {
+      z-index: 21;
+      display: flex;
+      align-items: center;
+      border: none;
+      text-align: left;
+      font-family: inherit;
+      background-color: $whiteColor;
+      text-transform: capitalize;
+
+      &:hover,
+      &_active {
+        background-color: $black10Color;
+      }
+
+      @include selectItem;
+    }
+
+    &-icon {
+      height: 16px;
+      width: 16px;
+      position: absolute;
+      right: 8px;
+      z-index: 10;
+
+      &_isSelectOpen {
+        right: 2px;
+        transform: rotate(-180deg) translateX(6px);
+      }
+    }
+  }
+
+  &__search-icon {
+    height: 24px;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+  }
+
+  &__custom-placeholder {
+    bottom: $paddingV;
+    font-size: 24px;
+    font-weight: 500;
+    left: $paddingH;
+    line-height: 30px;
+    position: absolute;
+    z-index: 10;
+  }
+
+  &__clear-icon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    opacity: 0;
+    transition: opacity .2s ease-out;
+    cursor: pointer;
+
+    &_visible {
+      opacity: 1;
+    }
+  }
+
+  &__suffix {
+    color: $black100Color;
+    font-size: 14px;
+    position: absolute;
+    right: 12px;
+  }
+
+  &_clearable {
+    padding-right: $clearIconWidth;
+  }
+}

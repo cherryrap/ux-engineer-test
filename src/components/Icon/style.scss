@@ -1,0 +1,50 @@
+@import "src/assets/style/constants";
+
+$svgs:
+  arrow-bottom,
+  arrow-left,
+  arrow-up,
+  close,
+  close-small,
+  person-white,
+  search,
+  star;
+
+.Icon {
+  display: inline-block;
+  position: relative;
+  user-select: none;
+  height: 32px;
+  width: 32px;
+  padding: 0;
+  border: none;
+  outline: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  &_icon {
+    @each $svg in $svgs {
+      &_#{$svg} {
+        background-image: url('./img/#{$svg}.svg');
+      }
+    }
+  }
+
+  &_size {
+    &_small {
+      width: 16px;
+      height: 16px;
+    }
+
+    &_normal {
+      width: 32px;
+      height: 32px;
+    }
+
+    &_large {
+      width: 48px;
+      height: 48px;
+    }
+  }
+}

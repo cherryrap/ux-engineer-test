@@ -1,0 +1,19 @@
+.cast {
+    list-style: none;
+    padding: 0;
+}
+
+.cast-member {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.cast-member-image {
+    max-width: 40px;
+    margin-right: 10px;
+}
+
+.cast-member-image img {
+    max-width: 100%;
+}
