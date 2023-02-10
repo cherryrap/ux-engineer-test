@@ -3,7 +3,6 @@
 $paddingH: 16px;
 $paddingV: 12px;
 $borderWidth: 1px;
-$borderRadius: 8px;
 $focusedLabelLineHeight: 18px;
 $controlHeight: 32px;
 $clearIconWidth: 32px;
@@ -16,20 +15,16 @@ $clearIconWidth: 32px;
   align-items: center;
   justify-content: flex-start;
   background-color: $whiteColor;
+  color: $black100Color;
   border-radius: $borderRadius;
   min-width: 155px;
   padding: $paddingV $paddingH;
-
-  &_invalid {
-    border-color: $redColor !important;
-    margin-bottom: 18px;
-  }
 
   &_focused {
     input {
       outline: none;
     }
-    border-color: $redColor !important;
+    //border-color: $redColor !important;
   }
 
   &__control {
@@ -74,60 +69,17 @@ $clearIconWidth: 32px;
         top: 0;
       }
     }
-
-    &_asPlaceholder {
-      @include placeholder;
-      display: block;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      left: $paddingH;
-      margin: 0;
-      transition: all .2s ease-out;
-      width: calc(100% - #{$paddingH} * 2);
-      overflow: hidden;
-      will-change: top;
-
-      &.Input__label {
-        &_focused {
-          top: calc(#{$paddingV} + #{$focusedLabelLineHeight} / 2);
-          font-size: 14px;
-          line-height: $focusedLabelLineHeight;
-          letter-spacing: -0.1px;
-          color: $black100Color;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          overflow: hidden;
-
-          +.Input__control {
-            top: 8px;
-
-            &[type="select"] {
-              top: 0;
-            }
-          }
-        }
-      }
-    }
   }
 
   &_type {
-    &_text, &_number {
-      display: flex;
-    }
-
     &_select {
       cursor: pointer !important;
 
       * {
         cursor: pointer !important;
         font-weight: 400;
-      }
-
-      .Input {
-        &__control {
-          text-transform: capitalize;
-        }
+        font-size: 16px;
+        text-transform: none;
       }
     }
   }
@@ -153,11 +105,10 @@ $clearIconWidth: 32px;
 
   &__select {
     position: absolute;
-    width: calc(100% + #{$borderWidth} * 2);
+    width: 100%;
     max-height: 320px;
     height: auto;
-    top: calc(#{$controlHeight} + 2px);
-    border: $border;
+    top: calc(#{$controlHeight} + 16px);
     box-shadow: $boxShadow;
     border-radius: $borderRadius;
     display: flex;
@@ -176,7 +127,7 @@ $clearIconWidth: 32px;
       text-align: left;
       font-family: inherit;
       background-color: $whiteColor;
-      text-transform: capitalize;
+      text-transform: none;
 
       &:hover,
       &_active {
@@ -187,8 +138,6 @@ $clearIconWidth: 32px;
     }
 
     &-icon {
-      height: 16px;
-      width: 16px;
       position: absolute;
       right: 8px;
       z-index: 10;
@@ -201,12 +150,10 @@ $clearIconWidth: 32px;
   }
 
   &__search-icon {
-    height: 24px;
     position: absolute;
     right: 12px;
     top: 50%;
     transform: translateY(-50%);
-    width: 24px;
   }
 
   &__custom-placeholder {

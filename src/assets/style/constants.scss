@@ -1,26 +1,6 @@
-// Fonts
-$fontSizeBase: 16px;
-$fontFamilyBase: 'PT Root UI', 'Arial', sans-serif;
-
 // Colors
-$baseAccentColor: #22284B;
-$bgColor: #FFFFFF;
-$blackColor: #222222;
-$grayColor: #4E4E4E;
 $redColor: #FF5F54;
 $whiteColor: #FFFFFF;
-
-//$primary600Color: #2E9A9F;
-//$primary500Color: #40BAB5;
-//$primary400Color: #6CD5C7;
-//$primary100Color: #DAFBEE;
-//$primary5Color: #F5FCFB;
-//
-//$secondary600Color: #D67B3E;
-//$secondary500Color: #F9A056;
-//$secondary400Color: #FBBE7F;
-//$secondary100Color: #FEF3DD;
-//$secondary5Color: #FEF6EE;
 
 $black100Color: #22284B;
 $black80Color: #596A8C;
@@ -32,42 +12,13 @@ $black5Color: #FAFBFC;
 
 // shadows, borders
 $boxShadow: 0 4px 8px rgba(192, 205, 217, 0.18), 0 0 2px rgba(192, 205, 217, 0.12), 0 0 1px rgba(0, 0, 0, 0.04);
-$border: 1px solid $black10Color;
-$border30: 1px solid $black30Color;
 $borderRadius: 6px;
-//$borderActive: 1px solid $primary500Color;
-
-//@mixin title {
-//  color: $black100Color;
-//  font-size: 32px;
-//  font-weight: 700;
-//  line-height: 1.2;
-//  margin-bottom: 8px;
-//  text-align: center;
-//
-//  @media screen and (max-width: 767px) {
-//    font-size: 20px;
-//  }
-//}
-
-@mixin description {
-  color: $black80Color;
-  font-size: 24px;
-  line-height: 1.33;
-  margin-bottom: 48px;
-  text-align: center;
-
-  @media screen and (max-width: 767px) {
-    font-size: 14px;
-  }
-}
 
 @mixin selectItem {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.3;
   padding: 12px 16px;
-  height: 40px;
-  flex-basis: 40px;
+  flex-basis: 30px;
   flex-shrink: 0;
   cursor: pointer;
   width: 100%;

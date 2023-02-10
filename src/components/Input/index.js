@@ -1,6 +1,5 @@
 import React from 'react';
 import _ from 'lodash';
-// import NumberFormat from 'react-number-format';
 import KEY_CODES from './KEY_CODES';
 import Icon from '../Icon';
 import b_ from 'b_';
@@ -31,10 +30,6 @@ class Input extends React.Component {
     }
   }
 
-  componentDidUpdate({ value: valuePrev }) {
-    if (this.props.value !== valuePrev) this.validate();
-  }
-
   componentWillUnmount() {
     if (_.includes([`select`, `search`], this.getControlType())) {
       document.removeEventListener(`mousedown`, this.handleClickOutsideSelect);
@@ -59,9 +54,7 @@ class Input extends React.Component {
     }
   }
 
-  onChange = event => {
-    this.props.onChange(this.props.normalize(event.target.value));
-  }
+  onChange = event => this.props.onChange(event.target.value)
 
   onSelect = ({ label, value }) => {
     this.setSearch(label);
@@ -85,9 +78,7 @@ class Input extends React.Component {
     if (onEnterPress && event && event.keyCode === KEY_CODES.ENTER && !event.ctrlKey) onEnterPress();
   }
 
-  closeSelect = () => {
-    this.setState({ isSelectOpen: false }, this.blur);
-  }
+  closeSelect = () => this.setState({ isSelectOpen: false }, this.blur)
 
   openSelect = () => {
     this.setState({ isSelectOpen: true }, () => {
@@ -103,12 +94,11 @@ class Input extends React.Component {
     if (this.inputRef && _.isFunction(this.inputRef.blur)) this.inputRef.blur();
     if (_.get(this.inputRef, `current`) && _.isFunction(this.inputRef.current.blur)) this.inputRef.current.blur();
     if (this.inputRefNumber && _.isFunction(this.inputRefNumber.blur)) this.inputRefNumber.blur();
-    this.setState({ focused: false }, this.validate);
+    this.setState({ focused: false });
   }
 
   focus = async () => {
-    const { disabled, name, setTouched } = this.props;
-    if (disabled) return;
+    const { name, setTouched } = this.props;
 
     if (_.includes([`select`, `search`], this.getControlType())) this.openSelect();
     if (this.inputRef && _.isFunction(this.inputRef.focus)) this.inputRef.focus();
@@ -121,29 +111,9 @@ class Input extends React.Component {
     if (!this.state.isSelectOpen) this.focus();
   }
 
-  validate = () => {
-    const { clearableSelect, validate, value } = this.props;
-    if (clearableSelect && _.isEmpty(value)) this.setState({ search: null });
-
-    if (!_.isFunction(validate)) return;
-    this.setState({ invalid: !validate(value) });
-  }
-
   getControlType = () => {
     if (this.props.select) return `select`;
     if (this.props.searchable) return `search`;
-    if (this.props.type === `file`) return `file`;
-    if (this.props.type === `textarea`) return `textarea`;
-    return _.includes([`number`, `tel`], this.props.type) ? `number` : `text`;
-  }
-
-  getControl = () => {
-    let Control = `input`;
-
-    // if (this.getControlType() === `number`) Control = NumberFormat;
-    if (this.props.type === `textarea`) Control = `textarea`;
-
-    return Control;
   }
 
   getControlProps = () => {
@@ -155,10 +125,6 @@ class Input extends React.Component {
     const { options, searchable, value } = this.props;
 
     switch (type) {
-      case `number`:
-        controlProps.getInputRef = this.inputRef;
-        controlProps.type = `tel`;
-        break;
       case `search`:
         controlProps.onChange = event => {
           this.setSearch(event);
@@ -173,10 +139,6 @@ class Input extends React.Component {
         controlProps.ref = this.inputRef;
         controlProps.value = this.state.search || _.get(_.find(options, { value }), `label`, ``);
         break;
-      case `textarea`:
-        controlProps.ref = this.inputRef;
-        controlProps.rows = 2;
-        break;
       default:
         controlProps.ref = this.inputRef;
         break;
@@ -186,43 +148,26 @@ class Input extends React.Component {
   }
 
   render() {
-    /* eslint-disable no-unused-vars */
     const {
       after,
       autoComplete,
       className,
       clearable,
-      controlClassName,
-      customPlaceholder: CustomPlaceholder,
-      disabled,
-      focusedClassName,
-      forceShowPlaceholder,
-      invalidClassName,
       label,
-      labelClassName,
-      labelExternal,
       name,
-      noLabel,
-      noZoomClassName,
-      omitName,
       options,
       placeholder,
       searchable,
-      // selectClassName,
-      selectItemClassName,
       size,
       type,
       value,
     } = this.props;
-    /* eslint-enable no-unused-vars */
+
     const {
       focused,
-      invalid,
       isSelectOpen,
       search,
-      touched,
     } = this.state;
-    const Control = this.getControl();
     const controlProps = this.getControlProps();
     const controlType = this.getControlType();
 
@@ -230,69 +175,39 @@ class Input extends React.Component {
       ? _.filter(options, option => _.includes(_.toLower(option.label), _.toLower(_.trim(search))))
       : options;
 
-    const showCustomPlaceholder = CustomPlaceholder
-      && (value === `` || forceShowPlaceholder);
-
     const isLabelFocused = focused || !!value || value === 0;
 
     return (
       <React.Fragment>
-        {labelExternal && (<label className={labelClassName}>{label}</label>)}
         <div
           className={cn(
             b({
               clearable,
               focused,
-              invalid : touched && invalid,
               size,
               textarea: type === `textarea`,
               type    : controlType,
             }),
             className,
-            touched && invalid ? invalidClassName : ``,
           )}
           onClick={this.onInputClick}
           ref={this.containerRef}
         >
-          {!noLabel && !labelExternal && (
-            <label
-              className={cn(
-                b(`label`, {
-                  asPlaceholder: !placeholder && !CustomPlaceholder,
-                  focused      : isLabelFocused,
-                  size         : (!placeholder && !CustomPlaceholder),
-                }),
-                labelClassName,
-                isLabelFocused && focusedClassName,
-              )}
-            >
-              {label}
-            </label>
-          )}
-          <Control
+          <label className={b(`label`, { focused: isLabelFocused })}>
+            {label}
+          </label>
+          <input
             autoComplete={autoComplete}
-            className={cn(
-              b(`control`),
-              controlClassName,
-              noZoomClassName,
-            )}
-            disabled={disabled}
-            name={omitName ? undefined : name}
+            className={b(`control`)}
+            name={name}
             onBlur={this.blur}
             onFocus={this.focus}
             onKeyDown={this.onKeyDown}
             placeholder={placeholder}
             value={value}
-            {...(controlType === `textarea` ? {} : { type: controlType })}
+            type={controlType}
             {...controlProps}
           />
-          {showCustomPlaceholder && (
-            <CustomPlaceholder
-              className={b(`custom-placeholder`)}
-              onClick={this.focus}
-              value={value}
-            />
-          )}
           {clearable && (
             <Icon
               className={b(`clear-icon`, { visible: !!value })}
@@ -308,9 +223,7 @@ class Input extends React.Component {
             />
           )}
           {searchable && (
-            <Icon
-              className={b(`search-icon`)}
-              icon='search'
+            <Icon className={b(`search-icon`)} icon='search'
             />
           )}
           {isSelectOpen && (
@@ -322,7 +235,7 @@ class Input extends React.Component {
                 const active = option.value === value;
                 return (
                   <li
-                    className={cn(b(`select-item`, { active }), selectItemClassName)}
+                    className={b(`select-item`, { active })}
                     key={option.value}
                     onClick={() => this.onSelect(option)}
                     ref={active ? this.activeSelectItem : _.noop}
@@ -344,31 +257,14 @@ Input.defaultProps = {
   autoComplete          : `off`,
   className             : ``,
   clearable             : false,
-  controlClassName      : ``,
-  disabled              : false,
-  focusedClassName      : ``,
-  forceShowPlaceholder  : false,
-  invalid               : false,
-  invalidClassName      : ``,
-  isLoading             : false,
-  labelExternal         : false,
-  noLabel               : false,
-  normalize             : _.identity,
-  noZoomClassName       : ``,
-  omitName              : false,
   onChange              : _.noop,
   onOptionSelect        : _.noop,
   onRef                 : _.noop,
   placeholder           : ``,
   readOnly              : false,
-  scrollIntoActiveOption: false,
   searchable            : false,
   select                : false,
-  selectClassName       : ``,
-  selectItemClassName   : ``,
   setTouched            : _.noop,
-  size                  : `m`,
-  submit                : _.noop,
   touched               : false,
   type                  : `text`,
   value                 : ``,

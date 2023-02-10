@@ -3,7 +3,7 @@
 .ShowCard {
   background-color: $black80Color;
   background-size: cover;
-  border-radius: 8px;
+  border-radius: $borderRadius;
   color: $whiteColor;
   padding: 16px;
   position: relative;
@@ -16,11 +16,6 @@
     box-shadow: $boxShadow;
   }
 
-  //@mixin slideAnimation {
-  //  animation-timing-function: ease;
-  //  animation-duration: 0.4s;
-  //}
-
   &__wrapper {
     position: relative;
     display: flex;
@@ -31,7 +26,7 @@
   }
 
   &__bg {
-    border-radius: 8px;
+    border-radius: $borderRadius;
     position: absolute;
     left: 0;
     right: 0;
@@ -42,7 +37,7 @@
   }
 
   &__bg-image {
-    border-radius: 8px;
+    border-radius: $borderRadius;
     background-size: cover;
     width: 100%;
     height: 100%;
@@ -63,10 +58,8 @@
     }
   }
 
-  @media screen and (max-width: 960px) {
-  }
-
-  @media screen and (max-width: 767px) {
-
+  @media only screen and (max-width: 678px) {
+    flex-grow: 1;
+    // scale cards vertically
   }
 }

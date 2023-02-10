@@ -67,7 +67,8 @@ export default function App(): JSX.Element {
                           clearable
                           onChange={(e: any) => onQueryChange(e)}
                           value={query}
-                          placeholder="Enter the name of a TV show..."
+                          type='search'
+                          placeholder="Search a TV show..."
                       />
                   </form>
               </div>

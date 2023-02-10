@@ -18,10 +18,6 @@
     justify-content: flex-end;
 }
 
-.description {
-
-}
-
 .shows {
     display: flex;
     position: relative;
@@ -32,6 +28,5 @@
 }
 
 .shows:last-child {
-    /*display: flex;*/
-    /*align-self: flex-start !important;*/
+    /* make the last card to stick to the left ;*/
 }

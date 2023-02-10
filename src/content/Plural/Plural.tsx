@@ -19,7 +19,7 @@ export const Plural: React.FC<IPluralProps> = ({ shows, onSelectShow, query }) =
     const sortBy = _.get(_.find(OPTIONS, [`value`, sorter]), `sortBy`) || 'asc';
     const resultsMessage = _.isEmpty(shows) ?
         `We are sorry but there are no results for "${query}"` :
-        `${shows.length} results` + (query ? `for "${query}"` : ``);
+        `${shows.length} results ` + (query ? `for "${query}"` : ``);
 
     return (
         <div className="plural">
