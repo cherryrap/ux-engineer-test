@@ -20,7 +20,8 @@ export const Plural: React.FC<IPluralProps> = ({ shows, onSelectShow, query }) =
     const resultsMessage = _.isEmpty(shows) ?
         `We are sorry but there are no results for "${query}"` :
         `${shows.length} results ` + (query ? `for "${query}"` : ``);
-
+            // sorter with years does not work as years need to be taken from a string.
+         // I'd do it with _.reduce or _.map / going over the array of objects and adding "year" as separate attribute
     return (
         <div className="plural">
             {!_.isEmpty(shows) && (
@@ -33,9 +34,6 @@ export const Plural: React.FC<IPluralProps> = ({ shows, onSelectShow, query }) =
                         select
                         value={sorter}
                     />
-                    {/*<Input*/}
-
-                    {/*/>*/}
                 </div>
             )}
             <div className="description">{resultsMessage}</div>
