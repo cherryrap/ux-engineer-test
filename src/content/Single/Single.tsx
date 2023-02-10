@@ -10,7 +10,6 @@ interface IShowProps {
 }
 
 export const Single: React.FC<IShowProps> = ({ show, onCancel }) => {
-    console.log('Show', show);
     const cast = _.get(show, '_embedded.cast');
 
     return (
