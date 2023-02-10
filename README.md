@@ -20,6 +20,57 @@ Once your remote repository is ready, add @ckortekaas and @nathanhoad and let us
 
 ----
 
+Given that I had tight time restraints 
+1) a have only a few hours a day after work,
+2) this test should to be handed over as soon as possible.
+
+That is why I chose the practices that are in my current habit / active memory (scss, hooks, class, lodash, Typescript for props and data from APIs) -> quicker for me to dive in with
+
+Given my intentions:
+1) to "show-off" my coding skills,
+2) to show that I'm flexible and I don't have ego or prejudices about using any of coding practices.
+
+That is why, I used not a single approach / practice in the project, but a variety of such:
+- some hooks,
+- some Class components (Input),
+- some plain functional components (in "components" folder mostly),
+- some sorting of data (with lodash),
+- some css and also some scss (I used BEM, but I'm also worked with styled Components, bootstrap, antd library),
+- some animation (Loader and ShowCards scaling),
+- some cross-browser stuff (Input),
+- mixins and constants in scss.
+
+For instance, I did not chose Tailwind / bootstrap / antd because 
+1) time, for me it's quicker to use plain scss (as I've been working that way in my current job),
+2) bundle sizes, my choice was comparably not that heavy (I chose to import lodash, sass, b_, className instead). 
+
+If given some background and goal -> what this App intends to achieve and what are our limitations, I'd prioratise the below mentioned improvements in a certain way. It could be SEO visibility or a selling landing with call to action or smth else or zero bugs.
+
+As for UX:
+- store sorter preferences in LS and use them for a user's next visit,
+- add extra sorter (for instance bultiple select with genres or languages) or change the existing one,
+- add dynamic filtering of data along with adding a filter / filters
+- have different URI for each content and use router,
+- add pagination -> infinate scroll or "show more button" 
+- add breadcrumbs,
+
+As for UI:
+- improve the error screen and show the error code,
+- improve the choice of colors / fonts / shadows / borders -> (I was doing on the go w/o UI kit, but here could be a well thought through typography / brand indentity / etc) 
+- improve cross-browser appearance (For instance, right now there are ugle default scrolls.
+
+As for code:
+- improve error handling in API calls,
+- move Single, Plural, Error into "pages" folder along with making them as separate pages,
+- add SSR (if we need SEO),å
+- add gtm events (if we need behavioural data),
+- add some eslint rules and babel plugins (my code would be much prettier, Dx would be better, and w/o extra time spend),
+- improve basic staff (logos, reset css in the route index.js)
+- make further inpovements on folder tree + remove from route folder doublicate (files for app and files for index),
+- may be move api calls into separate file api.js, if we foresee complicating the app with extra api calls,
+- add helpers (helper functions), if we foresee the repetative use (2+ times) of some functionality,
+- 
+
 _...feel free to add any comments or thoughts in this section..._
 
 ----
