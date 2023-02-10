@@ -50,26 +50,22 @@ As for UX:
 - store sorter preferences in LS and use them for a user's next visit,
 - add extra sorter (for instance bultiple select with genres or languages) or change the existing one,
 - add dynamic filtering of data along with adding a filter / filters
-- have different URI for each content and use router,
 - add pagination -> infinate scroll or "show more button" 
 - add breadcrumbs,
 
 As for UI:
 - improve the error screen and show the error code,
 - improve the choice of colors / fonts / shadows / borders -> (I was doing on the go w/o UI kit, but here could be a well thought through typography / brand indentity / etc) 
-- improve cross-browser appearance (For instance, right now there are ugle default scrolls.
+- improve cross-browser/device appearance (for instance, right now there are ugle default scrolls).
 
 As for code:
 - improve error handling in API calls,
 - move Single, Plural, Error into "pages" folder along with making them as separate pages,
-- add SSR (if we need SEO),å
-- add gtm events (if we need behavioural data),
-- add some eslint rules and babel plugins (my code would be much prettier, Dx would be better, and w/o extra time spend),
+- add some eslint rules and babel plugins (code much prettier, Dx would be better, and w/o extra time spend),
 - improve basic staff (logos, reset css in the route index.js)
-- make further inpovements on folder tree + remove from route folder doublicate (files for app and files for index),
-- may be move api calls into separate file api.js, if we foresee complicating the app with extra api calls,
-- add helpers (helper functions), if we foresee the repetative use (2+ times) of some functionality,
-- 
+- make further impovements on folder tree and modularity of code base,
+- add helpers (helper functions) for repetative use (2+ times) of some functionality,
+- have different URI for each content / use router,
 
 _...feel free to add any comments or thoughts in this section..._
 
