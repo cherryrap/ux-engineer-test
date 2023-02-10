@@ -36,6 +36,8 @@ That is why, I used not a single approach / practice in the project, but a varie
 - some plain functional components (in "components" folder mostly),
 - some sorting of data (with lodash),
 - some css and also some scss (I used BEM, but I'm also worked with styled Components, bootstrap, antd library),
+- usage of mixins, flex, concuting style classes, modifiers, some animation (Input, Loader),
+- usage of refs and cross-browser/device optimization (focus/blur/refs in Input),
 - some animation (Loader and ShowCards scaling),
 - some cross-browser stuff (Input),
 - mixins and constants in scss.
@@ -56,7 +58,8 @@ As for UX:
 As for UI:
 - improve the error screen and show the error code,
 - improve the choice of colors / fonts / shadows / borders -> (I was doing on the go w/o UI kit, but here could be a well thought through typography / brand indentity / etc) 
-- improve cross-browser/device appearance (for instance, right now there are ugle default scrolls).
+- improve cross-browser/device appearance (for instance, right now there are ugle default scrolls)
+- replace dynamically a few photos (at least 2 mobile/sesktop) depending on screen size 
 
 As for code:
 - improve error handling in API calls,
