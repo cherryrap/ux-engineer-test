@@ -69,7 +69,7 @@ As for code:
 - make further impovements on folder tree and modularity of code base,
 - add helpers (helper functions) for repetative use (2+ times) of some functionality,
 - have different URI for each content / use router,
-
+- add useEffect in App.js with API call when ComponentDidMount, so that user would see some cards upon the first entry
 _...feel free to add any comments or thoughts in this section..._
 
 ----
