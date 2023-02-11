@@ -46,7 +46,7 @@ For instance, I did not chose Tailwind / bootstrap / antd because
 1) time, for me it's quicker to use plain scss (as I've been working that way in my current job),
 2) bundle sizes, my choice was comparably not that heavy (I chose to import lodash, sass, b_, className instead). 
 
-If given some background and goal -> what this App intends to achieve and what are our limitations, I'd prioratise the below mentioned improvements in a certain way. It could be SEO visibility or a selling landing with call to action or smth else or zero bugs.
+If given some background and the goal (what this App intends to achieve and what are our limitations), I'd prioratise the below mentioned improvements in a certain way. 
 
 As for UX:
 - store sorter preferences in LS and use them for a user's next visit,
